@@ -5,11 +5,21 @@ export const ImageContainer = styled(Container)`
   height: 70vh;
   display: flex;
   justify-content: center;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    height: 45vh;
+    position: absolute;
+  }
 `;
 
 export const BackgroundImageContainer = styled.div`
-  width: 58%;
+  width: 38%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 `;

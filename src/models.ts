@@ -4,6 +4,10 @@ type Properties = {
   birth_year: string;
   gender: string;
 };
+export type Films = {
+  url: string;
+  title: string;
+}[];
 
 export type Character = {
   name: string;
@@ -16,4 +20,9 @@ export type Character = {
   homeworld: string;
   films: string[];
   properties: Properties;
+};
+
+export type Planets = {
+  name: string;
+  url: string;
 };

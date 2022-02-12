@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/header/Header";
 import NavigationBar from "./components/navbar/NavigationBar";
 import TableContent from "./components/table/Table";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./App.css";
 
 function App() {

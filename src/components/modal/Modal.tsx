@@ -1,19 +1,22 @@
 import React from "react";
 import { Modal, Button, Table } from "react-bootstrap";
-import { Character } from "../../models";
-import { useCharacter } from "../../Hooks/character";
 import { ModalHeader, ModalFooter } from "./modal.styles";
+import List from "../film-list/List";
+import { useFetchOneCharacterQuery } from "../../redux/features/apis/starWarsApiSlice";
+import axios from "axios";
 
 interface Props {
-  name: string | undefined;
+  name?: string;
   show: boolean;
   onHide: () => void;
+  mass?: string;
+  homeworld?: string;
+  films?: string[];
 }
 
 const ModalCharacter = (props: Props) => {
-  const { character } = useCharacter(props.name!);
-  console.log(props.name!);
-  console.log({ character });
+  const { data, isFetching } = useFetchOneCharacterQuery(props.name!);
+  console.log("data one character", data?.results);
 
   return (
     <Modal
@@ -22,39 +25,33 @@ const ModalCharacter = (props: Props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      {character?.map((character) => (
-        <>
-          <ModalHeader className="d-flex justify-content-center">
-            <Modal.Title id="contained-modal-title-vcenter">
-              {character.name}
-            </Modal.Title>
-          </ModalHeader>
-          <Modal.Body>
-            <Table>
-              <tbody>
-                <tr>
-                  <td>Mass</td>
-                  <td>{character.mass}</td>
-                </tr>
-                <tr>
-                  <td>Homeworld</td>
-                  <td>{character.homeworld}</td>
-                </tr>
-                <tr>
-                  <td>films</td>
-                  <td>
-                    {character.films.map((film) => (
-                      <ul>
-                        <li>{film}</li>
-                      </ul>
-                    ))}
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
-          </Modal.Body>
-        </>
-      ))}
+      <ModalHeader className="d-flex justify-content-center">
+        <Modal.Title id="contained-modal-title-vcenter">
+          {props.name}
+        </Modal.Title>
+      </ModalHeader>
+      <Modal.Body>
+        <Table>
+          <tbody>
+            <tr>
+              <td>Mass</td>
+              <td>{props.mass}</td>
+            </tr>
+            <tr>
+              <td>Homeworld</td>
+              <td>{props.homeworld}</td>
+            </tr>
+            <tr>
+              <td>films</td>
+              <td>
+                {props.films?.map((film) => (
+                  <li>{film}</li>
+                ))}
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </Modal.Body>
       <ModalFooter className="d-flex justify-content-center">
         <Button onClick={props.onHide} variant="dark">
           Close
