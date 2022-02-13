@@ -9,7 +9,7 @@ export const ImageContainer = styled(Container)`
   @media screen and (max-width: 800px) {
     width: 100%;
     height: 45vh;
-    position: absolute;
+    position: relative;
   }
 `;
 

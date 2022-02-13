@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { Navbar } from "react-bootstrap";
 
 export const NavigationContainer = styled(Navbar)`
-  background-color: transparent;
+  background-color: #fff;
   height: 110px;
-  position: relative;
+  position: fixed;
   width: 100%;
   z-index: 2;
   a {

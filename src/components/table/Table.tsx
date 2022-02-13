@@ -9,8 +9,10 @@ import {
   useFetchFilmsQuery,
 } from "../../redux/features/apis/starWarsApiSlice";
 import { Table, Container, Pagination } from "react-bootstrap";
+import SearchBar from "../search-bar/SearchBar";
 
 const TableContent: React.FC = () => {
+  const [searchQuery, setSearchQuery] = React.useState("");
   const [modalShow, setModalShow] = React.useState<boolean>(false);
   const [pageNumber, setPageNumber] = React.useState(1);
   const { data, isFetching } = useFetchCharactersQuery(pageNumber);
@@ -39,9 +41,23 @@ const TableContent: React.FC = () => {
       )
     );
   };
-
+  const handleSetInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
   return (
     <Container>
+      <SearchBar onSearch={searchQuery} handleSearchQuery={handleSetInput} />
+      <Pagination className="d-flex justify-content-center my-3">
+        <Pagination.First onClick={(e) => setPageNumber(Number(1))} />
+        <Pagination.Prev
+          onClick={(e) => setPageNumber(Number(pageNumber - 1))}
+        />
+        <Pagination.Next
+          onClick={(e) => setPageNumber(Number(pageNumber + 1))}
+        />
+        <Pagination.Last onClick={(e) => setPageNumber(Number(9))} />
+      </Pagination>
+
       <Table striped bordered hover variant="dark" responsive>
         <thead>
           <tr>
@@ -55,45 +71,39 @@ const TableContent: React.FC = () => {
           {isFetching ? (
             <LoadingContainer>Is loading....</LoadingContainer>
           ) : (
-            data?.results.map((character: Character, i) => (
-              <tr key={i}>
-                <td>
-                  <ButtonLink
-                    variant="link"
-                    onClick={() =>
-                      handleId(
-                        character.name,
-                        character.mass,
-                        character.homeworld,
-                        character.films
-                      )
-                    }
-                  >
-                    {character.name}
-                  </ButtonLink>
-                </td>
-                <td>
-                  {character.gender === "n/a"
-                    ? "Not assignable"
-                    : character.gender}
-                </td>
-                <td>{character.height}</td>
-                <td>{character.birth_year}</td>
-              </tr>
-            ))
+            data?.results
+              .filter((character) =>
+                character.name.toLowerCase().includes(searchQuery)
+              )
+              .map((character: Character, i) => (
+                <tr key={i}>
+                  <td>
+                    <ButtonLink
+                      variant="link"
+                      onClick={() =>
+                        handleId(
+                          character.name,
+                          character.mass,
+                          character.homeworld,
+                          character.films
+                        )
+                      }
+                    >
+                      {character.name}
+                    </ButtonLink>
+                  </td>
+                  <td>
+                    {character.gender === "n/a"
+                      ? "Not assignable"
+                      : character.gender}
+                  </td>
+                  <td>{character.height}</td>
+                  <td>{character.birth_year}</td>
+                </tr>
+              ))
           )}
         </tbody>
       </Table>
-      <Pagination className="d-flex justify-content-center my-3">
-        <Pagination.First onClick={(e) => setPageNumber(Number(1))} />
-        <Pagination.Prev
-          onClick={(e) => setPageNumber(Number(pageNumber - 1))}
-        />
-        <Pagination.Next
-          onClick={(e) => setPageNumber(Number(pageNumber + 1))}
-        />
-        <Pagination.Last onClick={(e) => setPageNumber(Number(9))} />
-      </Pagination>
       <ModalCharacter
         name={name}
         mass={mass}
