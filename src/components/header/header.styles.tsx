@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Container } from "react-bootstrap";
+import styled from "styled-components"
+import { Container } from "react-bootstrap"
 
 export const ImageContainer = styled(Container)`
   height: 70vh;
@@ -11,7 +11,7 @@ export const ImageContainer = styled(Container)`
     height: 45vh;
     position: relative;
   }
-`;
+`
 
 export const BackgroundImageContainer = styled.div`
   width: 38%;
@@ -22,4 +22,4 @@ export const BackgroundImageContainer = styled.div`
   @media screen and (max-width: 800px) {
     width: 100%;
   }
-`;
+`
