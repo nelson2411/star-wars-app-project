@@ -1,0 +1,16 @@
+{
+  "author": "Nelson Rosales",
+  "about": [
+    "This project was created in order to try the Star Wars Api.It is a simple app that allows you to search for a character and see their information. It was created using React and Redux."
+  ],
+  "name": ["Star Wars App"],
+  "technologies": [
+    "React",
+    "Redux-Toolkit",
+    "React-Bootstrap",
+    "Styled-components"
+  ],
+  "about-me": [
+    "My name is Nelson Rosales, and I am a full-stack developer with a freelancer background in Stockholm where I lived 4 years. I am currently living and enjoying Malaga Spain and completing the front-end developer route at Open Bootcamp."
+  ]
+}
