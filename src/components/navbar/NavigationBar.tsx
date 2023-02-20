@@ -1,7 +1,8 @@
-import React from "react";
-import "./styles.css";
-import { Navbar, Container, Nav } from "react-bootstrap";
-import { NavigationContainer } from "./navigation-bar.styles";
+import React from "react"
+import "./styles.css"
+import { Navbar, Container, Nav } from "react-bootstrap"
+import { NavigationContainer } from "./navigation-bar.styles"
+import { Link } from "react-router-dom"
 
 const NavigationBar = () => {
   return (
@@ -24,12 +25,12 @@ const NavigationBar = () => {
         >
           <Nav>
             <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">About</Nav.Link>
+            <Link to="/about">About</Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </NavigationContainer>
-  );
-};
+  )
+}
 
-export default NavigationBar;
+export default NavigationBar
