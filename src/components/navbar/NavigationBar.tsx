@@ -26,7 +26,7 @@ const NavigationBar = () => {
           id="responsive-navbar-nav"
         >
           <Nav>
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Link to="/">Home</Link>
             <Link to="/about">About</Link>
           </Nav>
         </Navbar.Collapse>
